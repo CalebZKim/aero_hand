@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aero-webcam-teleop"
+version = "0.2.0"
+description = "Webcam hand-tracking teleoperation for the TetherIA Aero Hand Open (no ROS 2)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Caleb Kim" },
+]
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python>=4.8",
+    "mediapipe>=0.10.14",
+]
+
+[project.optional-dependencies]
+hardware = ["aero-open-sdk"]
+realsense = ["pyrealsense2"]
+grasp = ["ultralytics>=8.0", "anthropic>=0.40", "python-dotenv>=1.0"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+aero-webcam-teleop = "aero_webcam_teleop.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
